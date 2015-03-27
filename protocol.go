@@ -79,6 +79,7 @@ type Model interface {
 
 type Connection interface {
 	ID() DeviceID
+	RelayID() DeviceID
 	Name() string
 	Index(folder string, files []FileInfo) error
 	IndexUpdate(folder string, files []FileInfo) error
@@ -89,6 +90,7 @@ type Connection interface {
 
 type rawConnection struct {
 	id       DeviceID
+	relayid  DeviceID
 	name     string
 	receiver Model
 	state    int
@@ -162,6 +164,10 @@ func NewConnection(deviceID DeviceID, reader io.Reader, writer io.Writer, receiv
 
 func (c *rawConnection) ID() DeviceID {
 	return c.id
+}
+
+func (c *rawConnection) RelayID() DeviceID {
+	return c.relayid
 }
 
 func (c *rawConnection) Name() string {

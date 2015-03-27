@@ -16,6 +16,10 @@ func (c wireFormatConnection) ID() DeviceID {
 	return c.next.ID()
 }
 
+func (c wireFormatConnection) RelayID() DeviceID {
+	return c.next.RelayID()
+}
+
 func (c wireFormatConnection) Name() string {
 	return c.next.Name()
 }
